@@ -1,0 +1,108 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+     <h1>Banque</h1>
+     <nav>
+        <ol class="breadcrumb">
+           <li class="breadcrumb-item">Fiche De Base</li>
+           <li class="breadcrumb-item">Gestion Clients</li>
+           <li class="breadcrumb-item active">Banque</li>
+        </ol>
+     </nav>
+  </div>
+  <div class="d-flex justify-content-end">
+   
+
+    <button
+      id="jh-create-entity"
+      data-cy="entityCreateButton"
+      class="btn btn-primary jh-create-entity create-banquecl mb-2"
+      [routerLink]="['/banquecl/new']"
+    >
+      <fa-icon icon="plus"></fa-icon>
+      <span> Crée une nouvelle banque </span>
+    </button>
+  </div>
+
+
+  <section class="section">
+     <div class="row">
+        <div class="col">
+           <div class="card table-responsive text-nowrap">
+              <div class="card-body">
+                 <h5 class="card-title">Liste des banques</h5>
+                 <table class="table">
+                 
+                  <thead>
+                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+                     
+                      <th scope="col" jhiSortBy="name">
+                        <div class="d-flex">
+                          <span>Name</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                   
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let banquecl of banquecls; trackBy: trackId" data-cy="entityTable">
+                    
+                      <td>{{ banquecl.name }}</td>
+                     
+                      <td class="text-end">
+                        <div class="btn-group">
+                          <button
+                            type="submit"
+                            [routerLink]="['/banquecl', banquecl.id, 'view']"
+                            class="btn btn-info btn-sm"
+                            data-cy="entityDetailsButton"
+                          >
+                            <fa-icon icon="eye"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                          </button>
+            
+                          <button
+                            type="submit"
+                            [routerLink]="['/banquecl', banquecl.id, 'edit']"
+                            class="btn btn-primary btn-sm"
+                            data-cy="entityEditButton"
+                          >
+                            <fa-icon icon="pencil-alt"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                          </button>
+            
+                          <button type="submit" (click)="delete(banquecl)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                            <fa-icon icon="times"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                    </table>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    
+                    
+                  
+                    <div *ngIf="banquecls && banquecls.length > 0">
+                      
+                  
+                      <div class="d-flex justify-content-center">
+                        <ngb-pagination
+                          [collectionSize]="totalItems"
+                          [page]="page"
+                          [pageSize]="itemsPerPage"
+                          [maxSize]="5"
+                          [rotate]="true"
+                        
+                          (pageChange)="navigateToPage($event)"
+                        ></ngb-pagination>
+                      </div>
+                    </div>   
+  </section>
+</main>
+

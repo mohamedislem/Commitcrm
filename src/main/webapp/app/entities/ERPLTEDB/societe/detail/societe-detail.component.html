@@ -1,0 +1,85 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="societe">
+      <h2 data-cy="societeDetailsHeading"><span>Societe</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ societe.id }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ societe.code }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ societe.name }}</span>
+        </dd>
+        <dt><span>Datecreation</span></dt>
+        <dd>
+          <span>{{ societe.datecreation | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Matriculef</span></dt>
+        <dd>
+          <span>{{ societe.matriculef }}</span>
+        </dd>
+        <dt><span>Adresse</span></dt>
+        <dd>
+          <span>{{ societe.adresse }}</span>
+        </dd>
+        <dt><span>Tel</span></dt>
+        <dd>
+          <span>{{ societe.tel }}</span>
+        </dd>
+        <dt><span>Fax</span></dt>
+        <dd>
+          <span>{{ societe.fax }}</span>
+        </dd>
+        <dt><span>Contact</span></dt>
+        <dd>
+          <span>{{ societe.contact }}</span>
+        </dd>
+        <dt><span>Portable</span></dt>
+        <dd>
+          <span>{{ societe.portable }}</span>
+        </dd>
+        <dt><span>Ville</span></dt>
+        <dd>
+          <span>{{ societe.ville }}</span>
+        </dd>
+        <dt><span>Codeposte</span></dt>
+        <dd>
+          <span>{{ societe.codeposte }}</span>
+        </dd>
+        <dt><span>Activite</span></dt>
+        <dd>
+          <span>{{ societe.activite }}</span>
+        </dd>
+        <dt><span>Photo</span></dt>
+        <dd>
+          <div *ngIf="societe.photo">
+            <a (click)="openFile(societe.photo, societe.photoContentType)">
+              <img [src]="'data:' + societe.photoContentType + ';base64,' + societe.photo" style="max-width: 100%" alt="societe image" />
+            </a>
+            {{ societe.photoContentType }}, {{ byteSize(societe.photo) }}
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/societe', societe.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

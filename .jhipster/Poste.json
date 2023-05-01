@@ -1,0 +1,32 @@
+{
+  "changelogDate": "20230227071516",
+  "clientRootFolder": "ERPLTEDB",
+  "databaseType": "mongodb",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "microserviceName": "ERPLTEDB",
+  "microservicePath": "../CRM",
+  "name": "Poste",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "code",
+      "otherEntityName": "societe",
+      "relationshipName": "societe",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

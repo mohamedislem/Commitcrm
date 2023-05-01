@@ -1,0 +1,196 @@
+{
+  "changelogDate": "20230227083128",
+  "clientRootFolder": "ERPLTEDB",
+  "databaseType": "mongodb",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typelocal",
+      "fieldType": "typelocal",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "LOCAL,ETRANGER"
+    },
+    {
+      "fieldName": "matriculef",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tel",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fax",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "regcom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rib",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "personnecont",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "srisque",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "scredit",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "blocage",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "timbre",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "regime",
+      "fieldType": "regime",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "RREL,FORFAITAIRE,EXONORE,EXPORT,SUSPENDUE"
+    },
+    {
+      "fieldName": "typeclient",
+      "fieldType": "typeclient",
+      "fieldValues": "CLIENT,CONTACT"
+    },
+    {
+      "fieldName": "typepatante",
+      "fieldType": "typepatante",
+      "fieldValues": "CIN,MATRICULEF"
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "note",
+      "fieldValues": "A,B,C"
+    },
+    {
+      "fieldName": "numportable",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "delaitreg",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numdecision",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "datedebut",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "datefin",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "datecreation",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "datevalidation",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "microserviceName": "ERPLTEDB",
+  "microservicePath": "../CRM",
+  "name": "Client",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "code",
+      "otherEntityName": "societe",
+      "relationshipName": "societe",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "activite",
+      "relationshipName": "activite",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "secteur",
+      "relationshipName": "secteur",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "banquecl",
+      "relationshipName": "banquecl",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "code",
+      "otherEntityName": "poste",
+      "relationshipName": "poste",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "modereg",
+      "relationshipName": "modereg",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "categorietarif",
+      "relationshipName": "categorietarif",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "gouvernorat",
+      "relationshipName": "gouvernorat",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "region",
+      "relationshipName": "region",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "representant",
+      "relationshipName": "representant",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

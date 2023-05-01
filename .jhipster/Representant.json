@@ -1,0 +1,36 @@
+{
+  "changelogDate": "20230227072812",
+  "clientRootFolder": "ERPLTEDB",
+  "databaseType": "mongodb",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "modevisite",
+      "fieldType": "modevisite",
+      "fieldValues": "SEMAINE,MENSUEL,TRIMESTRIEL,SEMESTRIEL"
+    },
+    {
+      "fieldName": "nbvisite",
+      "fieldType": "Integer"
+    }
+  ],
+  "microserviceName": "ERPLTEDB",
+  "microservicePath": "../CRM",
+  "name": "Representant",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "code",
+      "otherEntityName": "societe",
+      "relationshipName": "societe",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

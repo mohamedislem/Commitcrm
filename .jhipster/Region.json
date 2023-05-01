@@ -1,0 +1,33 @@
+{
+  "changelogDate": "20230227072152",
+  "clientRootFolder": "ERPLTEDB",
+  "databaseType": "mongodb",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "microserviceName": "ERPLTEDB",
+  "microservicePath": "../CRM",
+  "name": "Region",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "gouvernorat",
+      "relationshipName": "gouvernorat",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "code",
+      "otherEntityName": "societe",
+      "relationshipName": "societe",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -1,0 +1,121 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+     <h1>Catégorie Tarif</h1>
+     <nav>
+        <ol class="breadcrumb">
+           <li class="breadcrumb-item">Fiche De Base</li>
+           <li class="breadcrumb-item">Articles</li>
+           <li class="breadcrumb-item active">Catégorie Tarif</li>
+        </ol>
+     </nav>
+  </div>
+  <div class="d-flex justify-content-end mb-2">
+    <!-- <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+      <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+      <span>Refresh list</span>
+    </button> -->
+
+    <button
+      id="jh-create-entity"
+      data-cy="entityCreateButton"
+      class="btn btn-primary jh-create-entity create-categorietarif"
+      [routerLink]="['/categorietarif/new']"
+    >
+      <fa-icon icon="plus"></fa-icon>
+      <span> Crée une nouvelle Catégorie tarif </span>
+    </button>
+  </div>
+
+  <section class="section">
+     <div class="row">
+        <div class="col">
+           <div class="card table-responsive text-nowrap">
+              <div class="card-body">
+                 <h5 class="card-title">Liste des catégorie tarifs</h5>
+                 <table class="table">
+                  <thead>
+                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+                      
+                      <th scope="col" jhiSortBy="name">
+                        <div class="d-flex">
+                          <span>Nom</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <!-- <th scope="col" jhiSortBy="societe.code">
+                        <div class="d-flex">
+                          <span>Societe</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th> -->
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let categorietarif of categorietarifs; trackBy: trackId" data-cy="entityTable">
+                     
+                      <td>{{ categorietarif.name }}</td>
+                      <!-- <td>
+                        <div *ngIf="categorietarif.societe">
+                          <a [routerLink]="['/societe', categorietarif.societe.id, 'view']">{{ categorietarif.societe.code }}</a>
+                        </div>
+                      </td> -->
+                      <td class="text-end">
+                        <div class="btn-group">
+                          <button
+                            type="submit"
+                            [routerLink]="['/categorietarif', categorietarif.id, 'view']"
+                            class="btn btn-info btn-sm"
+                            data-cy="entityDetailsButton"
+                          >
+                            <fa-icon icon="eye"></fa-icon>
+                            <span class="d-none d-md-inline">Voire</span>
+                          </button>
+            
+                          <button
+                            type="submit"
+                            [routerLink]="['/categorietarif', categorietarif.id, 'edit']"
+                            class="btn btn-primary btn-sm"
+                            data-cy="entityEditButton"
+                          >
+                            <fa-icon icon="pencil-alt"></fa-icon>
+                            <span class="d-none d-md-inline">Modifier</span>
+                          </button>
+            
+                          <button type="submit" (click)="delete(categorietarif)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                            <fa-icon icon="times"></fa-icon>
+                            <span class="d-none d-md-inline">Supprimer</span>
+                
+                          </button>
+
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  
+                  </table>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    
+                  
+                    <div *ngIf="categorietarifs && categorietarifs.length > 0">
+                      <!-- <div class="d-flex justify-content-center">
+                        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+                      </div>
+                   -->
+                      <div class="d-flex justify-content-center">
+                        <ngb-pagination
+                          [collectionSize]="totalItems"
+                          [page]="page"
+                          [pageSize]="itemsPerPage"
+                          [maxSize]="5"
+                          [rotate]="true"
+                          
+                          (pageChange)="navigateToPage($event)"
+                        ></ngb-pagination>
+                      </div>
+                    </div>   
+  </section>
+</main>

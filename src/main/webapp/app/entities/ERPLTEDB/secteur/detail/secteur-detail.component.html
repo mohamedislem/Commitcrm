@@ -1,0 +1,56 @@
+
+<main id="main" class="main" *ngIf="secteur" data-cy="secteurDetailsHeading">
+  <div class="pagetitle">
+    <h1 id="jhi-secteur-heading">Secteur</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">Fiche De Base</li>
+        <li class="breadcrumb-item">Gestion Clients</li>
+        <li class="breadcrumb-item active">Secteur</li>
+     </ol>
+    </nav>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <h3 class="text-center" data-cy="SecteurDetailsHeading"><span>Secteur</span></h3>
+<hr />
+              <dl class="row-md jh-entity-details">
+                
+                <dt><span>Name</span></dt>
+                <dd>
+                  <span>{{ secteur.name }}</span>
+                </dd>
+                
+              </dl>
+
+              <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retourner</span>
+              </button>
+
+              <button type="button" [routerLink]="['/secteur', secteur.id, 'edit']" class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Modifier</span>
+              </button>
+                        
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</main>
+
+
+
+
+
+
+
+
+

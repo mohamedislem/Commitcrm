@@ -1,0 +1,88 @@
+<div id="main" class="main">
+  <h2 id="page-heading" data-cy="RegionHeading"></h2>
+
+    <div class="pagetitle">
+      <h1>Région</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Fiche De Base</li>
+          <li class="breadcrumb-item">Clients</li>
+          <li class="breadcrumb-item active">Région</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="d-flex justify-content-end">
+    
+
+      <button id="jh-create-entity" data-cy="entityCreateButton" class="btn btn-primary jh-create-entity create-region"
+        [routerLink]="['/region/new']">
+        <fa-icon icon="plus"></fa-icon>
+        <span> Crée une nouvelle région </span>
+      </button>
+    </div>
+  
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="regions && regions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span>Nom</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="gouvernorat.name">
+            <div class="d-flex">
+              <span>Gouvernorat</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let region of regions; trackBy: trackId" data-cy="entityTable">
+         
+          <td>{{ region.name }}</td>
+          <td>
+            <div *ngIf="region.gouvernorat">
+              <a [routerLink]="['/gouvernorat', region.gouvernorat.id, 'view']">{{ region.gouvernorat.name }}</a>
+            </div>
+          </td>
+         
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/region', region.id, 'view']" class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Voire</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/region', region.id, 'edit']" class="btn btn-primary btn-sm"
+                data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Modifier</span>
+              </button>
+
+              <button type="submit" (click)="delete(region)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="regions && regions.length > 0">
+    
+    <div class="d-flex justify-content-center">
+      <ngb-pagination [collectionSize]="totalItems" [page]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+        [rotate]="true"  (pageChange)="navigateToPage($event)"></ngb-pagination>
+    </div>
+  </div>
+</div>

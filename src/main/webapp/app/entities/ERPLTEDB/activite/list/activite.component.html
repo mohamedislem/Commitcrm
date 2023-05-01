@@ -1,0 +1,99 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Activité</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">Fiche De Base</li>
+        <li class="breadcrumb-item">Gestion Clients</li>
+        <li class="breadcrumb-item active">Activité</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="d-flex justify-content-end">
+    <!-- <button class="btn btn-info me-2 mb-2" (click)="load()" [disabled]="isLoading">
+      <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+      <span>Refresh list</span>
+    </button> -->
+
+    <button id="jh-create-entity" data-cy="entityCreateButton"
+      class="btn btn-primary jh-create-entity create-activite mb-2" [routerLink]="['/activite/new']">
+      <fa-icon icon="plus"></fa-icon>
+      <span> Créer une nouvelle Activité </span>
+    </button>
+  </div>
+
+  <section class="section">
+    <div class="row">
+      <div class="col">
+        <div class="card table-responsive text-nowrap">
+          <div class="card-body">
+            <h5 class="card-title">Liste Des Activités</h5>
+            <table class="table">
+              <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending"
+                  (sortChange)="navigateToWithComponentValues()">
+
+                  <th scope="col" jhiSortBy="name">
+                    <div class="d-flex">
+                      <span>Nom</span>
+                      <fa-icon class="p-1" icon="sort"></fa-icon>
+                    </div>
+                  </th>
+                 
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let activite of activites; trackBy: trackId" data-cy="entityTable">
+                  
+                  <td>{{ activite.name }}</td>
+                  
+                  <td class="text-end">
+                    <div class="btn-group">
+                      <button type="submit" [routerLink]="['/activite', activite.id, 'view']"
+                        class="btn btn-success btn-sm" data-cy="entityDetailsButton">
+                        <fa-icon icon="eye"></fa-icon>
+                        <span class="d-none d-md-inline">Voir</span>
+                      </button>
+
+                      <button type="submit" [routerLink]="['/activite', activite.id, 'edit']"
+                        class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                        <fa-icon icon="pencil-alt"></fa-icon>
+                        <span class="d-none d-md-inline">Modifier</span>
+                      </button>
+
+                      <button type="submit" (click)="delete(activite)" class="btn btn-danger btn-sm"
+                        data-cy="entityDeleteButton">
+                        <fa-icon icon="times"></fa-icon>
+                        <span class="d-none d-md-inline">Supprimer</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div *ngIf="activites && activites.length > 0">
+     
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+         [collectionSize]="totalItems" 
+         [page]="page" 
+         [pageSize]="itemsPerPage" 
+         [maxSize]="5"
+          [rotate]="true" 
+           (pageChange)="navigateToPage($event)">
+        </ngb-pagination>
+      </div>
+    </div>
+  </section>
+</main>
+

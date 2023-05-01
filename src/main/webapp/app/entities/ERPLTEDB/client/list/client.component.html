@@ -1,0 +1,390 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+     <h1>Clients</h1>
+     <nav>
+        <ol class="breadcrumb">
+           <li class="breadcrumb-item">Fiche De Base</li>
+           <li class="breadcrumb-item">Gestion Clients</li>
+           <li class="breadcrumb-item active">Clients</li>
+        </ol>
+     </nav>
+  </div>
+  
+  <div class="d-flex justify-content-end">
+    <button
+      id="jh-create-entity"
+      data-cy="entityCreateButton"
+      class="btn btn-primary jh-create-entity create-client mb-2"
+      [routerLink]="['/client/new']"
+    >
+      <fa-icon icon="plus"></fa-icon>
+      <span> Crée un nouveau client </span>
+    </button>
+  </div>
+
+  <section class="section">
+     <div class="row">
+        <div class="col">
+           <div class="card table-responsive text-nowrap">
+              <div class="card-body">
+                 <h5 class="card-title">Liste des clients</h5>
+                 <table class="table">
+                  <thead>
+                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+                                        
+                      <th scope="col" jhiSortBy="code">
+                        <div class="d-flex">
+                          <span>Code</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="name">
+                        <div class="d-flex">
+                          <span>Name</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                    
+                          <th scope="col" jhiSortBy="adresse">
+                        <div class="d-flex">
+                          <span>Adresse</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="typelocal">
+                        <div class="d-flex">
+                          <span>Typelocal</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="matriculef">
+                        <div class="d-flex">
+                          <span>Matriculef</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="tel">
+                        <div class="d-flex">
+                          <span>Tel</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="fax">
+                        <div class="d-flex">
+                          <span>Fax</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="regcom">
+                        <div class="d-flex">
+                          <span>Regcom</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="email">
+                        <div class="d-flex">
+                          <span>Email</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="rib">
+                        <div class="d-flex">
+                          <span>Rib</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="personnecont">
+                        <div class="d-flex">
+                          <span>Personnecont</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="photo">
+                        <div class="d-flex">
+                          <span>Photo</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="srisque">
+                        <div class="d-flex">
+                          <span>Srisque</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="scredit">
+                        <div class="d-flex">
+                          <span>Scredit</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="blocage">
+                        <div class="d-flex">
+                          <span>Blocage</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="timbre">
+                        <div class="d-flex">
+                          <span>Timbre</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="regime">
+                        <div class="d-flex">
+                          <span>Regime</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="typeclient">
+                        <div class="d-flex">
+                          <span>Typeclient</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="typepatante">
+                        <div class="d-flex">
+                          <span>Typepatante</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="note">
+                        <div class="d-flex">
+                          <span>Note</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="numportable">
+                        <div class="d-flex">
+                          <span>Numportable</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="delaitreg">
+                        <div class="d-flex">
+                          <span>Delaitreg</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="numdecision">
+                        <div class="d-flex">
+                          <span>Numdecision</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="datedebut">
+                        <div class="d-flex">
+                          <span>Datedebut</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="datefin">
+                        <div class="d-flex">
+                          <span>Datefin</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="datecreation">
+                        <div class="d-flex">
+                          <span>Datecreation</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="datevalidation">
+                        <div class="d-flex">
+                          <span>Datevalidation</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="societe.code">
+                        <div class="d-flex">
+                          <span>Societe</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="activite.name">
+                        <div class="d-flex">
+                          <span>Activite</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="secteur.name">
+                        <div class="d-flex">
+                          <span>Secteur</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="banquecl.name">
+                        <div class="d-flex">
+                          <span>Banquecl</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="poste.code">
+                        <div class="d-flex">
+                          <span>Poste</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="modereg.name">
+                        <div class="d-flex">
+                          <span>Modereg</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="categorietarif.name">
+                        <div class="d-flex">
+                          <span>Categorietarif</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="gouvernorat.name">
+                        <div class="d-flex">
+                          <span>Gouvernorat</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="region.name">
+                        <div class="d-flex">
+                          <span>Region</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col" jhiSortBy="representant.name">
+                        <div class="d-flex">
+                          <span>Representant</span>
+                          <fa-icon class="p-1" icon="sort"></fa-icon>
+                        </div>
+                      </th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of clients; trackBy: trackId" data-cy="entityTable">
+
+                      <td>{{ client.code }}</td>
+                      <td>{{ client.name }}</td>
+                      <td>{{ client.adresse }}</td>
+                      <td>{{ client.typelocal }}</td>
+                      <td>{{ client.matriculef }}</td>
+                      <td>{{ client.tel }}</td>
+                      <td>{{ client.fax }}</td>
+                      <td>{{ client.regcom }}</td>
+                      <td>{{ client.email }}</td>
+                      <td>{{ client.rib }}</td>
+                      <td>{{ client.personnecont }}</td>
+                      <td>
+                        <a *ngIf="client.photo" (click)="openFile(client.photo, client.photoContentType)">
+                          <img [src]="'data:' + client.photoContentType + ';base64,' + client.photo" style="max-height: 30px" alt="client image" />
+                        </a>
+                        <span *ngIf="client.photo">{{ client.photoContentType }}, {{ byteSize(client.photo) }}</span>
+                      </td>
+                      <td>{{ client.srisque }}</td>
+                      <td>{{ client.scredit }}</td>
+                      <td>{{ client.blocage }}</td>
+                      <td>{{ client.timbre }}</td>
+                      <td>{{ client.regime }}</td>
+                      <td>{{ client.typeclient }}</td>
+                      <td>{{ client.typepatante }}</td>
+                      <td>{{ client.note }}</td>
+                      <td>{{ client.numportable }}</td>
+                      <td>{{ client.delaitreg }}</td>
+                      <td>{{ client.numdecision }}</td>
+                      <td>{{ client.datedebut | formatMediumDatetime }}</td>
+                      <td>{{ client.datefin | formatMediumDatetime }}</td>
+                      <td>{{ client.datecreation | formatMediumDatetime }}</td>
+                      <td>{{ client.datevalidation | formatMediumDatetime }}</td>
+                      <td>
+                        <div *ngIf="client.societe">
+                          <a [routerLink]="['/societe', client.societe.id, 'view']">{{ client.societe.code }}</a>
+                        </div>
+                      </td>
+                      <td>
+                        <div *ngIf="client.activite">
+                          <a [routerLink]="['/activite', client.activite.id, 'view']">{{ client.activite.name }}</a>
+                        </div>
+                      </td>
+                      <td>
+                        <div *ngIf="client.secteur">
+                          <a [routerLink]="['/secteur', client.secteur.id, 'view']">{{ client.secteur.name }}</a>
+                        </div>
+                      </td>
+                      <td>
+                        <div *ngIf="client.banquecl">
+                          <a [routerLink]="['/banquecl', client.banquecl.id, 'view']">{{ client.banquecl.name }}</a>
+                        </div>
+                      </td>
+                      <td>
+                        <div *ngIf="client.poste">
+                          <a [routerLink]="['/poste', client.poste.id, 'view']">{{ client.poste.code }}</a>
+                        </div>
+                      </td>
+                      <td>
+                        <div *ngIf="client.modereg">
+                          <a [routerLink]="['/modereg', client.modereg.id, 'view']">{{ client.modereg.name }}</a>
+                        </div>
+                      </td>
+                      <td>
+                        <div *ngIf="client.categorietarif">
+                          <a [routerLink]="['/categorietarif', client.categorietarif.id, 'view']">{{ client.categorietarif.name }}</a>
+                        </div>
+                      </td>
+                      <td>
+                        <div *ngIf="client.gouvernorat">
+                          <a [routerLink]="['/gouvernorat', client.gouvernorat.id, 'view']">{{ client.gouvernorat.name }}</a>
+                        </div>
+                      </td>
+                      <td>
+                        <div *ngIf="client.region">
+                          <a [routerLink]="['/region', client.region.id, 'view']">{{ client.region.name }}</a>
+                        </div>
+                      </td>
+                      <td>
+                        <div *ngIf="client.representant">
+                          <a [routerLink]="['/representant', client.representant.id, 'view']">{{ client.representant.name }}</a>
+                        </div>
+                      </td>
+                      <td class="text-end">
+                        <div class="btn-group">
+                          <button type="submit" [routerLink]="['/client', client.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                            <fa-icon icon="eye"></fa-icon>
+                            <span class="d-none d-md-inline">Voire</span>
+                          </button>
+            
+                          <button type="submit" [routerLink]="['/client', client.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                            <fa-icon icon="pencil-alt"></fa-icon>
+                            <span class="d-none d-md-inline">Modifier</span>
+                          </button>
+            
+                          <button type="submit" (click)="delete(client)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                            <fa-icon icon="times"></fa-icon>
+                            <span class="d-none d-md-inline">Supprimer</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  
+                    
+                  </tbody>
+                  
+                    </table>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    
+                    <div *ngIf="clients && clients.length > 0">
+                     
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <ngb-pagination
+                          [collectionSize]="totalItems"
+                          [page]="page"
+                          [pageSize]="itemsPerPage"
+                          [maxSize]="5"
+                          [rotate]="true"
+                       
+                          (pageChange)="navigateToPage($event)"
+                        ></ngb-pagination>
+                      </div>    
+  </section>
+</main> 

@@ -1,0 +1,66 @@
+<main id="main" class="main" *ngIf="banquecl" data-cy="banqueclDetailsHeading">
+  <div class="pagetitle">
+    <h1 id="jhi-activite-heading">Banque</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">Fiche De Base</li>
+        <li class="breadcrumb-item">Gestion Clients</li>
+        <li class="breadcrumb-item active">Banque</li>
+     </ol>
+    </nav>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <h3 class="text-center" data-cy="banqueclDetailsHeading"><span>Banque</span></h3>
+<hr />
+            <dl class="row-md jh-entity-details">
+            
+              <dt><span>Nom :</span>  </dt>
+              <dd class>
+                <span class="m" >    {{ banquecl.name }}</span>
+              </dd>
+              <!-- <dt *ngIf="ShowMe" ><span>Societé</span></dt>
+              <dd *ngIf="ShowMe">
+                <div *ngIf="activite.societe">
+                  <a [routerLink]="['/societe', banquecl.societe.id, 'view']">{{ banque.societe.code }}</a>
+                </div>
+              </dd> -->
+            </dl>
+    
+            <button type="submit" (click)="previousState()" class="btn btn btn-outline-primary" data-cy="entityDetailsBackButton">
+                <fa-icon icon="arrow-left"></fa-icon><span>Retourner</span>
+            </button>
+
+            <button type="button" [routerLink]="['/banquecl', banquecl.id, 'edit']" class="btn btn-primary">
+              <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Modifier</span>
+            </button> 
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

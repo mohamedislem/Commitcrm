@@ -1,0 +1,9 @@
+export enum modevisite {
+  SEMAINE = 'SEMAINE',
+
+  MENSUEL = 'MENSUEL',
+
+  TRIMESTRIEL = 'TRIMESTRIEL',
+
+  SEMESTRIEL = 'SEMESTRIEL',
+}

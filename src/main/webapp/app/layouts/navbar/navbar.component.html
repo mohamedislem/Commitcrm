@@ -1,0 +1,264 @@
+<div [ngSwitch]="account !== null">
+
+
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between"> <a routerLink="/dashboard"
+        class="logo d-flex align-items-center"> <img src="content/img/logo.png" alt=""> </a> <i
+        (click)="sidebarToggle()" class="bi bi-list toggle-sidebar-btn" *ngSwitchCase="true"></i></div>
+    <!-- <div class="search-bar" *ngSwitchCase="true">
+      <form class="search-form d-flex align-items-center" method="POST" action="#"> <input type="text" name="query"
+          placeholder="Search" title="Enter search keyword"> <button type="submit" title="Search"><i
+            class="bi bi-search"></i></button></form>
+    </div> -->
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+        <!-- <li class="nav-item d-block d-lg-none"> <a class="nav-link nav-icon search-bar-toggle " href="#"> <i
+                            class="bi bi-search"></i> </a></li> -->
+        <li class="nav-item dropdown" *ngSwitchCase="true">
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown"> <i class="bi bi-bell"></i> <span
+              class="badge bg-primary badge-number">4</span> </a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header"> You have 4 new notifications <a href="#"><span
+                  class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Lorem Ipsum</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>30 min. ago</p>
+              </div>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="notification-item">
+              <i class="bi bi-x-circle text-danger"></i>
+              <div>
+                <h4>Atque rerum nesciunt</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>1 hr. ago</p>
+              </div>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="notification-item">
+              <i class="bi bi-check-circle text-success"></i>
+              <div>
+                <h4>Sit rerum fuga</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>2 hrs. ago</p>
+              </div>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="notification-item">
+              <i class="bi bi-info-circle text-primary"></i>
+              <div>
+                <h4>Dicta reprehenderit</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>4 hrs. ago</p>
+              </div>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="dropdown-footer"> <a href="#">Show all notifications</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown" *ngSwitchCase="true">
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown"> <i class="bi bi-chat-left-text"></i>
+            <span class="badge bg-success badge-number">3</span> </a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+            <li class="dropdown-header"> You have 3 new messages <a href="#"><span
+                  class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="message-item">
+              <a href="#">
+                <img src="content/img/messages-1.jpg" alt="" class="rounded-circle">
+                <div>
+                  <h4>Jassa</h4>
+                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                  <p>4 hrs. ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="message-item">
+              <a href="#">
+                <img src="content/img/messages-2.jpg" alt="" class="rounded-circle">
+                <div>
+                  <h4 th:text="${#authentification.getPrincipal().getUsername ()}">visiteur</h4>
+                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                  <p>6 hrs. ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="message-item">
+              <a href="#">
+                <img src="content/img/messages-3.jpg" alt="" class="rounded-circle">
+                <div>
+                  <h4>Jassa</h4>
+                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                  <p>8 hrs. ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="dropdown-footer"> <a href="#">Show all messages</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown pe-3">
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img *ngSwitchCase="true" src="content/img/profile-img.jpg" alt="Profile" class="rounded-circle"> <span
+              class=" username d-none d-md-block dropdown-toggle ps-2" th:text="${#getUsername ()}">Visiteur</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header" *ngSwitchCase="true">
+              <h6>Jassa</h6>
+              <span>Web Designer</span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li *ngSwitchCase="true"> <a class="dropdown-item d-flex align-items-center" routerLink="/user-profile"> <i
+                  class="bi bi-person"></i> <span>My Profile</span> </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li *ngSwitchCase="true"> <a class="dropdown-item d-flex align-items-center" routerLink="/user-profile"> <i
+                  class="bi bi-gear"></i> <span>Account Settings</span>
+              </a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li *ngSwitchCase="true"> <a class="dropdown-item d-flex align-items-center" routerLink="/pages-faq"> <i
+                  class="bi bi-question-circle"></i> <span>Need Help?</span>
+              </a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li *ngSwitchCase="true"> <a class="dropdown-item d-flex align-items-center" (click)="logout()" id="logout"
+                data-cy="logout" routerLink="/"> <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span> </a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li *ngSwitchCase="false"> <a class="dropdown-item d-flex align-items-center" (click)="login()" id="login"
+                data-cy="login" routerLink="/">
+
+                <i class="bi bi-box-arrow-right"></i>
+                <span>authentification</span> </a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li *ngSwitchCase="false"> <a class="dropdown-item d-flex align-items-center" routerLink="account/register">
+                <i class="bi bi-box-arrow-right"></i> <span>créer un
+                  compte</span> </a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <!--side bar-->
+  <aside id="sidebar" class="sidebar" *ngSwitchCase="true">
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-item"> <a class="nav-link " routerLink="/dashboard"> <i class="bi bi-grid"></i>
+          <span>Dashboard</span> </a></li>
+      <li class="nav-heading">Fiche de base</li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> <i
+            class="bi bi-menu-button-wide"></i><span>Article</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li> <a routerLink="categorietarif" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()">
+              <i class="bi bi-circle"></i><span>Categorie Tarifs</span> </a>
+          </li>
+          <li> <a routerLink="/accordion"> <i class="bi bi-circle"></i><span>Categorie</span> </a></li>
+          <li> <a routerLink="/badges"> <i class="bi bi-circle"></i><span>Famille</span> </a></li>
+          <li> <a routerLink="/breadcrumbs"> <i class="bi bi-circle"></i><span>Saisie Article</span> </a></li>
+
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"> <i
+            class="bi bi-people"></i><span>Gestion Clients</span><i class="bi bi-chevron-down ms-auto"></i> </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+          <li> <a routerLink="client" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"> <i class="bi bi-circle"></i><span>Client</span> </a></li>
+          <li> <a routerLink="poste" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"> <i class="bi bi-circle"></i><span>Poste</span> </a></li>
+          <li> <a routerLink="banquecl" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"> <i class="bi bi-circle"></i><span>Banque</span> </a></li>
+          <li> <a routerLink="representant" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"> <i class="bi bi-circle"></i><span>Representant</span> </a></li>
+          <li> <a routerLink="region" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"> <i class="bi bi-circle"></i><span>Region</span> </a></li>
+          <li> <a routerLink="gouvernorat" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"> <i class=" bi bi-circle"></i><span>Gouvernorat</span> </a></li>
+          <li> <a routerLink="activite" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"> <i class="bi bi-circle"></i><span>Activité</span> </a></li>
+          <li> <a class="dropdown-item" routerLink="secteur" routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()"> <i
+                class="bi bi-circle"></i><span>Secteurs</span> </a></li>
+
+
+
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#"> <i
+            class="bi bi-pin-map"></i><span>Parc</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li> <a routerLink="/tables-general"> <i class="bi bi-circle"></i><span>Vehicule</span> </a>
+          </li>
+          <li> <a routerLink="/tables-data"> <i class="bi bi-circle"></i><span>Chauffeur</span> </a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#"> <i
+            class="bi bi-calculator"></i><span>Finance</span><i class="bi bi-chevron-down ms-auto"></i> </a>
+        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li> <a routerLink="modereg" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+              (click)="collapseNavbar()"> <i class="bi bi-circle"></i><span>Mode réglement</span> </a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#"> <i
+            class="bi bi-cart"></i><span>Vente</span><i class="bi bi-chevron-down ms-auto"></i> </a>
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li> <a routerLink="/icons-bootstrap"> <i class="bi bi-circle"></i><span>Devis</span> </a>
+          </li>
+          <li> <a routerLink="/icons-remix"> <i class="bi bi-circle"></i><span>Bon De Commande</span> </a></li>
+          <li> <a routerLink="/icons-boxicons"> <i class="bi bi-circle"></i><span>Bon De Livraison</span> </a></li>
+          <li> <a routerLink="/icons-boxicons"> <i class="bi bi-circle"></i><span>Facturation</span> </a></li>
+        </ul>
+      </li>
+      <li class="nav-heading">Pages</li>
+      <li class="nav-item"> <a class="nav-link collapsed" routerLink="/user-profile"> <i class="bi bi-person"></i>
+          <span>Profile</span> </a></li>
+      <li class="nav-item"> <a class="nav-link collapsed" routerLink="/pages-faq"> <i class="bi bi-question-circle"></i>
+          <span>F.A.Q</span> </a></li>
+      <li class="nav-item"> <a class="nav-link collapsed" routerLink="/pages-contact"> <i class="bi bi-envelope"></i>
+          <span>Contact</span> </a></li>
+
+    </ul>
+  </aside>
+</div>

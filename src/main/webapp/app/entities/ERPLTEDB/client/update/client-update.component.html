@@ -1,0 +1,511 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+     <h1 id="jhi-client-heading" data-cy="ClientCreateUpdateHeading">Client</h1>
+     <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Fiche de base</li>
+          <li class="breadcrumb-item">Gestion clients</li>
+          <li class="breadcrumb-item active">client</li>
+        </ol>
+     </nav>
+  </div>
+  <section class="section ms-8">
+    <div class="row ml-8">
+       <div class="col-lg-6 ">
+          <div class="card">
+             <div class="card-body">
+           
+            <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+              
+            <!-- code-->
+              <div class="row mb-3 mt-2">
+                <label class="col-sm-2 col-form-label" for="field_code">Code</label>
+              
+                  <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+                  <div *ngIf="editForm.get('code')!.invalid && (editForm.get('code')!.dirty || editForm.get('code')!.touched)">
+                    <small class="form-text text-danger" *ngIf="editForm.get('code')?.errors?.required"> This field is required. </small>
+                  
+                </div>
+              </div>
+              <!--nom-->
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="field_code">Nom</label>
+                  <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                      <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required"> This field is required. </small>
+                    </div>
+                  
+              </div>
+              
+              <!--adress-->
+              <div class="row mb-3">
+                <label class="form-label" for="field_adresse">Adresse</label>
+               
+                  <input type="text" class="form-control" name="adresse" id="field_adresse" data-cy="adresse" formControlName="adresse" />
+                </div>
+           
+              <!--type locale-->
+              <div class="row mb-3">
+                <label class="form-label" for="field_typelocal">Typelocal</label>
+              
+                  <select class="form-control" name="typelocal" formControlName="typelocal" id="field_typelocal" data-cy="typelocal">
+                    <option [ngValue]="null"></option>
+                    <option *ngFor="let typelocal of typelocalValues" [value]="typelocal">typelocal</option>
+                  </select>
+                  <div *ngIf="editForm.get('typelocal')!.invalid && (editForm.get('typelocal')!.dirty || editForm.get('typelocal')!.touched)">
+                    <small class="form-text text-danger" *ngIf="editForm.get('typelocal')?.errors?.required"> This field is required. </small>
+                  </div>
+          
+              </div>
+              <!--matricule-->
+              <div class="row mb-3">
+                <label class="form-label" for="field_matriculef">Matriculef</label>
+              
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="matriculef"
+                    id="field_matriculef"
+                    data-cy="matriculef"
+                    formControlName="matriculef"
+                  />
+               
+              </div>
+              <!-- tel -->
+              <div class="row mb-3">
+                <label class="form-label" for="field_tel">Tel</label>
+           
+                  <input type="text" class="form-control" name="tel" id="field_tel" data-cy="tel" formControlName="tel" />
+               
+              </div>
+              <!-- fax -->
+              <div class="row mb-3">
+                <label class="form-label" for="field_fax">Fax</label>
+             
+                  <input type="text" class="form-control" name="fax" id="field_fax" data-cy="fax" formControlName="fax" />
+               
+              </div>
+              <!--regcom-->
+              <div class="row mb-3">
+                <label class="form-label" for="field_regcom">Regcom</label>
+               
+                  <input type="text" class="form-control" name="regcom" id="field_regcom" data-cy="regcom" formControlName="regcom" />
+                
+              </div>
+              <!--email-->
+              <div class="row mb-3">
+                <label class="form-label" for="field_email">Email</label>
+                
+                  <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+            
+              </div>
+              <!--rib-->
+              <div class="row mb-3">
+                <label class="form-label" for="field_rib">Rib</label>
+             
+                  <input type="text" class="form-control" name="rib" id="field_rib" data-cy="rib" formControlName="rib" />
+              
+              </div>
+              <!-- personne cont-->
+              <div class="row mb-3">
+                <label class="form-label" for="field_personnecont">Personnecont</label>
+            
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="personnecont"
+                    id="field_personnecont"
+                    data-cy="personnecont"
+                    formControlName="personnecont"
+                  />
+                
+                <div class="row mb-3">
+                  <label class="form-label" for="field_societe">Societe</label>
+                  <select
+                    class="form-control"
+                    id="field_societe"
+                    data-cy="societe"
+                    name="societe"
+                    formControlName="societe"
+                    [compareWith]="compareSociete"
+                  >
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="societeOption" *ngFor="let societeOption of societesSharedCollection">{{ societeOption.code }}</option>
+                  </select>
+                </div>
+        
+                <div class="row mb-3">
+                  <label class="form-label" for="field_activite">Activite</label>
+                  <select
+                    class="form-control"
+                    id="field_activite"
+                    data-cy="activite"
+                    name="activite"
+                    formControlName="activite"
+                    [compareWith]="compareActivite"
+                  >
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="activiteOption" *ngFor="let activiteOption of activitesSharedCollection">{{ activiteOption.name }}</option>
+                  </select>
+                </div>
+        
+                <div class="row mb-3">
+                  <label class="form-label" for="field_secteur">Secteur</label>
+                  <select
+                    class="form-control"
+                    id="field_secteur"
+                    data-cy="secteur"
+                    name="secteur"
+                    formControlName="secteur"
+                    [compareWith]="compareSecteur"
+                  >
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="secteurOption" *ngFor="let secteurOption of secteursSharedCollection">{{ secteurOption.name }}</option>
+                  </select>
+                </div>
+        
+                <div class="row mb-3">
+                  <label class="form-label" for="field_banquecl">Banquecl</label>
+                  <select
+                    class="form-control"
+                    id="field_banquecl"
+                    data-cy="banquecl"
+                    name="banquecl"
+                    formControlName="banquecl"
+                    [compareWith]="compareBanquecl"
+                  >
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="banqueclOption" *ngFor="let banqueclOption of banqueclsSharedCollection">{{ banqueclOption.name }}</option>
+                  </select>
+                </div>
+        
+                <div class="row mb-3">
+                  <label class="form-label" for="field_poste">Poste</label>
+                  <select class="form-control" id="field_poste" data-cy="poste" name="poste" formControlName="poste" [compareWith]="comparePoste">
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="posteOption" *ngFor="let posteOption of postesSharedCollection">{{ posteOption.code }}</option>
+                  </select>
+                </div>
+        
+                <div class="row mb-3">
+                  <label class="form-label" for="field_modereg">Modereg</label>
+                  <select
+                    class="form-control"
+                    id="field_modereg"
+                    data-cy="modereg"
+                    name="modereg"
+                    formControlName="modereg"
+                    [compareWith]="compareModereg"
+                  >
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="moderegOption" *ngFor="let moderegOption of moderegsSharedCollection">{{ moderegOption.name }}</option>
+                  </select>
+                </div>
+        
+                <div class="row mb-3">
+                  <label class="form-label" for="field_categorietarif">Categorietarif</label>
+                  <select
+                    class="form-control"
+                    id="field_categorietarif"
+                    data-cy="categorietarif"
+                    name="categorietarif"
+                    formControlName="categorietarif"
+                    [compareWith]="compareCategorietarif"
+                  >
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="categorietarifOption" *ngFor="let categorietarifOption of categorietarifsSharedCollection">
+                      {{ categorietarifOption.name }}
+                    </option>
+                  </select>
+                </div>
+        
+             
+        
+              </div>
+            </form>
+          </div>
+       </div>
+    </div>
+    
+    <!--second part -->
+   
+
+         <div class=" section row col-lg-6">
+          <section class="section">
+            <div class="card">
+               <div class="card-body">
+             <form>
+              <div class="row mb-3">
+                <label class="form-label" for="field_gouvernorat">Gouvernorat</label>
+                <select
+                  class="form-control"
+                  id="field_gouvernorat"
+                  data-cy="gouvernorat"
+                  name="gouvernorat"
+                  formControlName="gouvernorat"
+                  [compareWith]="compareGouvernorat"
+                >
+                  <option [ngValue]="null"></option>
+                  <option [ngValue]="gouvernoratOption" *ngFor="let gouvernoratOption of gouvernoratsSharedCollection">
+                    {{ gouvernoratOption.name }}
+                  </option>
+                </select>
+              </div>
+      
+              <div class="row mb-3">
+                <label class="form-label" for="field_region">Region</label>
+                <select
+                  class="form-control"
+                  id="field_region"
+                  data-cy="region"
+                  name="region"
+                  formControlName="region"
+                  [compareWith]="compareRegion"
+                >
+                  <option [ngValue]="null"></option>
+                  <option [ngValue]="regionOption" *ngFor="let regionOption of regionsSharedCollection">{{ regionOption.name }}</option>
+                </select>
+              </div>
+      
+              <div class="row mb-3">
+                <label class="form-label" for="field_representant">Representant</label>
+                <select
+                  class="form-control"
+                  id="field_representant"
+                  data-cy="representant"
+                  name="representant"
+                  formControlName="representant"
+                  [compareWith]="compareRepresentant"
+                >
+                  <option [ngValue]="null"></option>
+                  <option [ngValue]="representantOption" *ngFor="let representantOption of representantsSharedCollection">
+                    {{ representantOption.name }}
+                  </option>
+                </select>
+              </div>
+            
+              <!--photo-->
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="field_photo">Photo</label>
+                <div>
+                  <img
+                    [src]="'data:' + editForm.get('photoContentType')!.value + ';base64,' + editForm.get('photo')!.value"
+                    style="max-height: 100px"
+                    *ngIf="editForm.get('photo')!.value"
+                    alt="client image"
+                  />
+                  <div *ngIf="editForm.get('photo')!.value" class="form-text text-danger clearfix">
+                    <span class="pull-start">{{ editForm.get('photoContentType')!.value }}, {{ byteSize(editForm.get('photo')!.value!) }}</span>
+                    <button
+                      type="button"
+                      (click)="clearInputImage('photo', 'photoContentType', 'file_photo')"
+                      class="btn btn-secondary btn-xs pull-end"
+                    >
+                      <fa-icon icon="times"></fa-icon>
+                    </button>
+                  </div>
+              
+                    <input type="file" id="file_photo" data-cy="photo" (change)="setFileData($event, 'photo', true)" accept="image/*" />
+                    
+                    <input type="hidden" class="form-control" name="photo" id="field_photo" data-cy="photo" formControlName="photo" />
+                    <input
+                      type="hidden"
+                      class="form-control"
+                      name="photoContentType"
+                      id="field_photoContentType"
+                      formControlName="photoContentType"
+                    />
+                
+                 
+                </div>
+              </div>
+              <!--sriquue-->
+              <div class="row mb-3">
+                <label class="form-label" for="field_srisque">Srisque</label>
+           
+                  <input type="number" class="form-control" name="srisque" id="field_srisque" data-cy="srisque" formControlName="srisque" />
+                
+              </div>
+              <!--scredit-->
+              <div class="row mb-3">
+                <label class="form-label" for="field_scredit">Scredit</label>
+                
+                  <input type="number" class="form-control" name="scredit" id="field_scredit" data-cy="scredit" formControlName="scredit" />
+           
+              </div>
+              <!--inter here-->
+              <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-2 pt-0"> choose</legend>
+                
+                   <div class="form-check">
+                      <input class="form-check-input" type="radio" name="blocage" id="field_blocage" data-cy="blocage" formControlName="blocage"/>
+                      <div *ngIf="editForm.get('blocage')!.invalid && (editForm.get('blocage')!.dirty || editForm.get('blocage')!.touched)">
+                        <small class="form-text text-danger" *ngIf="editForm.get('blocage')?.errors?.required"> This field is required. </small>
+                      </div> 
+                      <label class="form-check-label" r="field_blocage"> Blocage </label>
+                      <!--originale
+                      <div class="row mb-3">
+                        <label class="form-label" for="field_blocage">Blocage</label>
+                        <input type="checkbox" class="form-check" name="blocage" id="field_blocage" data-cy="blocage" formControlName="blocage" />
+                        <div *ngIf="editForm.get('blocage')!.invalid && (editForm.get('blocage')!.dirty || editForm.get('blocage')!.touched)">
+                          <small class="form-text text-danger" *ngIf="editForm.get('blocage')?.errors?.required"> This field is required. </small>
+                        </div>
+                      </div>
+                       -->
+                  
+                  <div class="form-check"> 
+                    <input class="form-check-input" type="radio" name="timbre" id="field_timbre" data-cy="timbre" formControlName="timbre" />
+                    <div *ngIf="editForm.get('timbre')!.invalid && (editForm.get('timbre')!.dirty || editForm.get('timbre')!.touched)">
+                      <small class="form-text text-danger" *ngIf="editForm.get('timbre')?.errors?.required"> This field is required. </small>
+                    </div>
+                    <label class="form-check-label" for="field_timbre"> timbre</label>
+                  </div>
+                  <!--original 
+                  <div class="row mb-3">
+                    <label class="form-label" for="field_timbre">Timbre</label>
+                    <input type="checkbox" class="form-check" name="timbre" id="field_timbre" data-cy="timbre" formControlName="timbre" />
+                      <div *ngIf="editForm.get('timbre')!.invalid && (editForm.get('timbre')!.dirty || editForm.get('timbre')!.touched)">
+                        <small class="form-text text-danger" *ngIf="editForm.get('timbre')?.errors?.required"> This field is required. </small>
+                      </div>
+                </div>-->
+                </div>
+             </fieldset> 
+
+             <div class="row mb-3">
+              <label class="form-label" for="field_typeclient">Typeclient</label>
+              <select class="form-control" name="typeclient" formControlName="typeclient" id="field_typeclient" data-cy="typeclient">
+                <option [ngValue]="null"></option>
+                <option *ngFor="let typeclient of typeclientValues" [value]="typeclient">typeclient</option>
+              </select>
+            </div>
+    
+            <div class="row mb-3">
+              <label class="form-label" for="field_typepatante">Typepatante</label>
+              <select class="form-control" name="typepatante" formControlName="typepatante" id="field_typepatante" data-cy="typepatante">
+                <option [ngValue]="null"></option>
+                <option *ngFor="let typepatante of typepatanteValues" [value]="typepatante">typepatante</option>
+              </select>
+            </div>
+    
+            <div class="row mb-3">
+              <label class="form-label" for="field_note">Note</label>
+              <select class="form-control" name="note" formControlName="note" id="field_note" data-cy="note">
+                <option [ngValue]="null"></option>
+                <option *ngFor="let note of noteValues" [value]="note">note</option>
+              </select>
+            </div>
+    
+            <div class="row mb-3">
+              <label class="form-label" for="field_numportable">Numportable</label>
+              <input
+                type="text"
+                class="form-control"
+                name="numportable"
+                id="field_numportable"
+                data-cy="numportable"
+                formControlName="numportable"
+              />
+            </div>
+    
+            <div class="row mb-3">
+              <label class="form-label" for="field_delaitreg">Delaitreg</label>
+              <input type="number" class="form-control" name="delaitreg" id="field_delaitreg" data-cy="delaitreg" formControlName="delaitreg" />
+            </div>
+    
+            <div class="row mb-3">
+              <label class="form-label" for="field_numdecision">Numdecision</label>
+              <input
+                type="text"
+                class="form-control"
+                name="numdecision"
+                id="field_numdecision"
+                data-cy="numdecision"
+                formControlName="numdecision"
+              />
+            </div>
+    
+            <div class="row mb-3">
+              <label class="form-label" for="field_datedebut">Datedebut</label>
+              <div class="d-flex">
+                <input
+                  id="field_datedebut"
+                  data-cy="datedebut"
+                  type="datetime-local"
+                  class="form-control"
+                  name="datedebut"
+                  formControlName="datedebut"
+                  placeholder="YYYY-MM-DD HH:mm"
+                />
+              </div>
+            </div>
+    
+            <div class="row mb-3">
+              <label class="form-label" for="field_datefin">Datefin</label>
+              <div class="d-flex">
+                <input
+                  id="field_datefin"
+                  data-cy="datefin"
+                  type="datetime-local"
+                  class="form-control"
+                  name="datefin"
+                  formControlName="datefin"
+                  placeholder="YYYY-MM-DD HH:mm"
+                />
+              </div>
+            </div>
+    
+            <div class="row mb-3">
+              <label class="form-label" for="field_datecreation">Datecreation</label>
+              <div class="d-flex">
+                <input
+                  id="field_datecreation"
+                  data-cy="datecreation"
+                  type="datetime-local"
+                  class="form-control"
+                  name="datecreation"
+                  formControlName="datecreation"
+                  placeholder="YYYY-MM-DD HH:mm"
+                />
+              </div>
+            </div>
+    
+            <div class="row mb-3">
+              <label class="form-label" for="field_datevalidation">Datevalidation</label>
+              <div class="d-flex">
+                <input
+                  id="field_datevalidation"
+                  data-cy="datevalidation"
+                  type="datetime-local"
+                  class="form-control"
+                  name="datevalidation"
+                  formControlName="datevalidation"
+                  placeholder="YYYY-MM-DD HH:mm"
+                />
+              </div>
+            </div>
+    
+            
+            <div>
+              <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+                <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+              </button>
+              <button
+              type="submit"
+              id="save-entity"
+              data-cy="entityCreateSaveButton"
+              [disabled]="editForm.invalid || isSaving"
+              class="btn btn-primary"
+            >
+              <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+            </button>
+            
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+  </div>
+  </section>
+  
+</main>

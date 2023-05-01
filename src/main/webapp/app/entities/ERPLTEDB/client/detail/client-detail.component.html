@@ -1,0 +1,214 @@
+<main id="main" class="main" *ngIf="client" data-cy="clientDetailsHeading">
+  <div class="pagetitle">
+    <h1 id="jhi-client-heading">Client</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">Fiche De Base</li>
+        <li class="breadcrumb-item">Articles</li>
+        <li class="breadcrumb-item active">Client</li>
+     </ol>
+    </nav>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <h3 class="text-center" data-cy="ClientDetailsHeading"><span>Client</span></h3>
+<hr />
+              
+      <dl class="row-md jh-entity-details">
+        
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ client.code }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ client.name }}</span>
+        </dd>
+        <dt><span>Adresse</span></dt>
+        <dd>
+          <span>{{ client.adresse }}</span>
+        </dd>
+        <dt><span>Typelocal</span></dt>
+        <dd>
+          <span>{{ client.typelocal }}</span>
+        </dd>
+        <dt><span>Matriculef</span></dt>
+        <dd>
+          <span>{{ client.matriculef }}</span>
+        </dd>
+        <dt><span>Tel</span></dt>
+        <dd>
+          <span>{{ client.tel }}</span>
+        </dd>
+        <dt><span>Fax</span></dt>
+        <dd>
+          <span>{{ client.fax }}</span>
+        </dd>
+        <dt><span>Regcom</span></dt>
+        <dd>
+          <span>{{ client.regcom }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ client.email }}</span>
+        </dd>
+        <dt><span>Rib</span></dt>
+        <dd>
+          <span>{{ client.rib }}</span>
+        </dd>
+        <dt><span>Personnecont</span></dt>
+        <dd>
+          <span>{{ client.personnecont }}</span>
+        </dd>
+        <dt><span>Photo</span></dt>
+        <dd>
+          <div *ngIf="client.photo">
+            <a (click)="openFile(client.photo, client.photoContentType)">
+              <img [src]="'data:' + client.photoContentType + ';base64,' + client.photo" style="max-width: 100%" alt="client image" />
+            </a>
+            {{ client.photoContentType }}, {{ byteSize(client.photo) }}
+          </div>
+        </dd>
+        <dt><span>Srisque</span></dt>
+        <dd>
+          <span>{{ client.srisque }}</span>
+        </dd>
+        <dt><span>Scredit</span></dt>
+        <dd>
+          <span>{{ client.scredit }}</span>
+        </dd>
+        <dt><span>Blocage</span></dt>
+        <dd>
+          <span>{{ client.blocage }}</span>
+        </dd>
+        <dt><span>Timbre</span></dt>
+        <dd>
+          <span>{{ client.timbre }}</span>
+        </dd>
+        <dt><span>Regime</span></dt>
+        <dd>
+          <span>{{ client.regime }}</span>
+        </dd>
+        <dt><span>Typeclient</span></dt>
+        <dd>
+          <span>{{ client.typeclient }}</span>
+        </dd>
+        <dt><span>Typepatante</span></dt>
+        <dd>
+          <span>{{ client.typepatante }}</span>
+        </dd>
+        <dt><span>Note</span></dt>
+        <dd>
+          <span>{{ client.note }}</span>
+        </dd>
+        <dt><span>Numportable</span></dt>
+        <dd>
+          <span>{{ client.numportable }}</span>
+        </dd>
+        <dt><span>Delaitreg</span></dt>
+        <dd>
+          <span>{{ client.delaitreg }}</span>
+        </dd>
+        <dt><span>Numdecision</span></dt>
+        <dd>
+          <span>{{ client.numdecision }}</span>
+        </dd>
+        <dt><span>Datedebut</span></dt>
+        <dd>
+          <span>{{ client.datedebut | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Datefin</span></dt>
+        <dd>
+          <span>{{ client.datefin | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Datecreation</span></dt>
+        <dd>
+          <span>{{ client.datecreation | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Datevalidation</span></dt>
+        <dd>
+          <span>{{ client.datevalidation | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Societe</span></dt>
+        <dd>
+          <div *ngIf="client.societe">
+            <a [routerLink]="['/societe', client.societe.id, 'view']">{{ client.societe.code }}</a>
+          </div>
+        </dd>
+        <dt><span>Activite</span></dt>
+        <dd>
+          <div *ngIf="client.activite">
+            <a [routerLink]="['/activite', client.activite.id, 'view']">{{ client.activite.name }}</a>
+          </div>
+        </dd>
+        <dt><span>Secteur</span></dt>
+        <dd>
+          <div *ngIf="client.secteur">
+            <a [routerLink]="['/secteur', client.secteur.id, 'view']">{{ client.secteur.name }}</a>
+          </div>
+        </dd>
+        <dt><span>Banquecl</span></dt>
+        <dd>
+          <div *ngIf="client.banquecl">
+            <a [routerLink]="['/banquecl', client.banquecl.id, 'view']">{{ client.banquecl.name }}</a>
+          </div>
+        </dd>
+        <dt><span>Poste</span></dt>
+        <dd>
+          <div *ngIf="client.poste">
+            <a [routerLink]="['/poste', client.poste.id, 'view']">{{ client.poste.code }}</a>
+          </div>
+        </dd>
+        <dt><span>Modereg</span></dt>
+        <dd>
+          <div *ngIf="client.modereg">
+            <a [routerLink]="['/modereg', client.modereg.id, 'view']">{{ client.modereg.name }}</a>
+          </div>
+        </dd>
+        <dt><span>Categorietarif</span></dt>
+        <dd>
+          <div *ngIf="client.categorietarif">
+            <a [routerLink]="['/categorietarif', client.categorietarif.id, 'view']">{{ client.categorietarif.name }}</a>
+          </div>
+        </dd>
+        <dt><span>Gouvernorat</span></dt>
+        <dd>
+          <div *ngIf="client.gouvernorat">
+            <a [routerLink]="['/gouvernorat', client.gouvernorat.id, 'view']">{{ client.gouvernorat.name }}</a>
+          </div>
+        </dd>
+        <dt><span>Region</span></dt>
+        <dd>
+          <div *ngIf="client.region">
+            <a [routerLink]="['/region', client.region.id, 'view']">{{ client.region.name }}</a>
+          </div>
+        </dd>
+        <dt><span>Representant</span></dt>
+        <dd>
+          <div *ngIf="client.representant">
+            <a [routerLink]="['/representant', client.representant.id, 'view']">{{ client.representant.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retourner</span>
+      </button>
+
+      <button type="button" [routerLink]="['/client', client.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Modifier</span>
+      </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</main>
